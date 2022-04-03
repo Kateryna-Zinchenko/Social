@@ -5,6 +5,19 @@
 .dialogsItems {
     padding: 10px;
 }
+.dialogsItems a{
+    text-decoration: none;
+}
 .messages{
     padding: 10px;
+}
+.sendMessageButton{
+    background-color: white;
+    border-radius: 6px;
+}
+.textarea{
+    resize: none;
+    padding: 6px;
+    width: 300px;
+    border-color: darkgrey;
 }

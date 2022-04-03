@@ -1,6 +1,8 @@
 import React from "react";
 import s from './Post.module.css';
 
+
+
 const Post = (props) => {
     return (
         <div>
@@ -8,7 +10,7 @@ const Post = (props) => {
                 <img src="https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg" alt="#"/>
                 {props.postText}
                 <div>
-                    <span>like</span> {props.likesCount}
+                    <span>like</span> <span>{props.likesCount}</span>
                 </div>
             </div>
         </div>

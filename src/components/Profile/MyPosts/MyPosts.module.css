@@ -4,3 +4,13 @@
 .posts{
     margin-top: 10px;
 }
+.addPostButton{
+    background-color: white;
+    border-radius: 6px;
+}
+.textarea{
+    resize: none;
+    padding: 6px;
+    width: 300px;
+    border-color: darkgrey;
+}

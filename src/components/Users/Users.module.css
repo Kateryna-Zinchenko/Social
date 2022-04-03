@@ -1,0 +1,14 @@
+.usersPhoto{
+    width: 100px;
+    height: 100px;
+}
+.followButton{
+    background-color: white;
+    border-radius: 6px;
+}
+.selectedPage{
+    font-weight: bold;
+}
+.pagesCountCursor{
+    cursor: pointer;
+}

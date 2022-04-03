@@ -1,47 +1,44 @@
 import React from "react";
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import DialogItem from "./DialogItem/DialogsItem";
+import Message from "./Message/Message";
+import {Navigate} from "react-router-dom";
 
-const DialogItem = (props) => {
-    let path = '/dialogs/' + props.id;
+const Dialogs = (props) => {
+    const state = props.dialogsPage;
+    const dialogsElements = state.dialogsData.map((d) => (<DialogItem key={d.id} id={d.id} name={d.name}/>));
+    const messagesElements = state.messagesData.map((m) => (<Message key={m.id} message={m.message}/>));
+    const newMessageBody = state.newMessageBody;
 
-    return (
-        <div className={s.dialog}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
+    const onSendMessageClick = () => {
+        props.sendMessage();
+    }
+    const onNewMessageChange = (e) => {
+        const body = e.target.value;
+        props.updateNewMessageBody(body);
+    }
 
-const Message = (props) => {
-    return (
-        <div className={s.dialog}>{props.message}</div>
-    )
-}
+    if (props.isAuth === false) {
+        return <Navigate to={'/login'} />
+    }
 
-const Dialogs = () => {
-    let dialogsData = [
-        {id: 1, name: 'Katya'},
-        {id: 2, name: 'Sasha'},
-        {id: 3, name: 'Nastya'}
-    ]
-    let messagesData = [
-        {message: 'Hi'},
-        {message: 'Wow'},
-        {message: 'Yay'}
-    ]
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
-                <DialogItem name={dialogsData[2].name} id={dialogsData[2].id}/>
+                {dialogsElements}
             </div>
             <div className={s.messages}>
-
-                <Message message={messagesData[0].message}/>
-                <Message message={messagesData[1].message}/>
-                <Message message={messagesData[2].message}/>
-
+                <div>{messagesElements}</div>
+                <div>
+                    <div>
+                        <textarea className={s.textarea} value={newMessageBody}
+                                   onChange={onNewMessageChange}
+                                   placeholder='Enter your message' />
+                    </div>
+                    <div>
+                        <button className={s.sendMessageButton} onClick={onSendMessageClick}>Send</button>
+                    </div>
+                </div>
             </div>
         </div>
     )
